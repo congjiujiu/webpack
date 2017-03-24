@@ -12,7 +12,11 @@ export default {
       // with hot-reload because the reloaded component
       // preserves its current state and we are modifying
       // its initial state.
+      {{#isEnabled plugins 'vuex'}}
+      msg: this.$store.state.state.hello.msg{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+      {{else}}
       msg: 'Hello World!'{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+      {{/isEnabled}}
     }{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
   }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
 }{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
