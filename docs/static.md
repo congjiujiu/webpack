@@ -12,13 +12,27 @@ Since these assets may be inlined/copied/renamed during build, they are essentia
 
 ### Asset Resolving Rules
 
-- **Relative URLs**, e.g. `./assets/logo.png` will be interpreted as a module dependency. They will be replaced with a auto-generated URL based on your Webpack output configuration.
+- **Relative URLs**, e.g. `./assets/logo.png` will be interpreted as a module dependency. They will be replaced with an auto-generated URL based on your Webpack output configuration.
 
 - **Non-prefixed URLs**, e.g. `assets/logo.png` will be treated the same as the relative URLs and translated into `./assets/logo.png`.
 
 - **URLs prefixed with `~`** are treated as a module request, similar to `require('some-module/image.png')`. You need to use this prefix if you want to leverage Webpack's module resolving configurations. For example if you have a resolve alias for `assets`, you need to use `<img src="~assets/logo.png">` to ensure that alias is respected.
 
 - **Root-relative URLs**, e.g. `/assets/logo.png` are not processed at all.
+
+### Getting Asset Paths in JavaScript
+
+In order for Webpack to return the correct asset paths, you need to use `require('./relative/path/to/file.jpg')`, which will get processed by `file-loader` and returns the resolved URL. For example:
+
+``` js
+computed: {
+  background () {
+    return require('./bgs/' + this.id + '.jpg')
+  }
+}
+```
+
+**Note the above example will include every image under `./bgs/` in the final build.** This is because Webpack cannot guess which of them will be used at runtime, so it includes them all.
 
 ### "Real" Static Assets
 
@@ -39,4 +53,4 @@ module.exports = {
 
 Any file placed in `static/` should be referenced using the absolute URL `/static/[filename]`. If you change `assetSubDirectory` to `assets`, then these URLs will need to be changed to `/assets/[filename]`.
 
-We will learn more about the config file in the [next section](backend.md).
+We will learn more about the config file in the section about [backend integration](backend.md).
