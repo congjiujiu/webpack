@@ -21,6 +21,9 @@
     "babel-runtime": "^6.0.0"
   },
   "devDependencies": {
+    {{#axios}}
+    "axios": "0.15.3",
+    {{/axios}}
     "babel-core": "^6.0.0",
     "babel-loader": "^6.0.0",
     "babel-plugin-transform-runtime": "^6.0.0",

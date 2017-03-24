@@ -47,6 +47,10 @@ module.exports = {
         }
       ]
     },
+    axios: {
+      type: "confirm",
+      message: "Use axios for AJAX requests?"
+    },
     unit: {
       type: "confirm",
       message: "Setup unit tests with Karma + Mocha?"
@@ -84,6 +88,7 @@ module.exports = {
     "test/e2e/**/*": "e2e",
     "src/store/**/*":  'plugins[\'vuex\']',
     "src/routes/**/*": 'plugins[\'vue-router\']',
+    "src/api/**/*": 'axios',
   },
   completeMessage: "To get started:\n\n  cd {{destDirName}}\n  npm install\n  npm run dev\n\nDocumentation can be found at https://vuejs-templates.github.io/webpack"
 };
