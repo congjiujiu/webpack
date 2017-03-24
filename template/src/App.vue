@@ -1,7 +1,11 @@
 <template>
   <div id="app">
     <img class="logo" src="./assets/logo.png">
+    {{#isEnabled plugins 'vue-router'}}
+    <router-view></router-view>
+    {{else}}
     <hello></hello>
+    {{/isEnabled}}
     <p>
       Welcome to your Vue.js app!
     </p>
@@ -23,12 +27,18 @@
 </template>
 
 <script>
+{{#isEnabled plugins 'vue-router'}}
+{{else}}
 import Hello from './components/Hello'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+{{/isEnabled}}
 
 export default {
+  {{#isEnabled plugins 'vue-router'}}
+  {{else}}
   components: {
     Hello{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
   }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+  {{/isEnabled}}
 }{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 </script>
 
